@@ -1,13 +1,14 @@
 const { species } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
-function map() {
-  const speciesMap = {
-    NE: [],
-    NW: [],
-    SE: [],
-    SW: [],
-  };
+const speciesMap = {
+  NE: [],
+  NW: [],
+  SE: [],
+  SW: [],
+};
+
+function simpleMap() {
   species.forEach((specie) => {
     if (specie.location === 'NE') speciesMap.NE.push(specie.name);
     if (specie.location === 'NW') speciesMap.NW.push(specie.name);
@@ -18,16 +19,20 @@ function map() {
   return speciesMap;
 }
 
-// function mapNames() {
-//   const mapNames = map();
-//   data.species
+// function mapWithNames() {
+//   const especieWithNames = species.reduce((acc, specie) => {
+//     acc[specie.name] = specie.residents.name;
+//     return acc;
+//   }, {});
+//   species.forEach((specie) => speciesMap[specie.location] = especieWithNames);
 // }
 
 function getAnimalMap(options) {
   // seu código aqui
-  if (!options || !options.includeNames) return map();
+  if (!options || !options.includeNames) return simpleMap();
+  // if (options.includeNames) return mapWithNames();
 }
 
-console.log(getAnimalMap());
+console.log(getAnimalMap({ includeNames: true }));
 
 module.exports = getAnimalMap;

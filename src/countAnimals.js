@@ -3,9 +3,10 @@ const data = require('../data/zoo_data');
 function countAnimals(animal) {
   function counter(arr) {
     return arr.species
-      .reduce((amountOfAnimals, animals) => ({
-        ...amountOfAnimals, [animals.name]: animals.residents.length,
-      }), {});
+      .reduce((acc, animals) => {
+        acc[animals.name] = animals.residents.length;
+        return acc;
+      }, {});
   }
   if (!animal) return counter(data);
   if (!animal.sex) return counter(data)[animal.specie];
